@@ -1,6 +1,11 @@
 <div class="blog-container">
 	<div class="blog-hero">
-		<img src="{{ blog.data.attributes.cover_image }}" alt="" />
+		<img
+			src="https://cms.pepijncolenbrander.com{{
+				blog.data.attributes.cover_image.data.attributes.url
+			}}"
+			alt=""
+		/>
 		<div class="image-cover"></div>
 	</div>
 	<div class="blog-text">

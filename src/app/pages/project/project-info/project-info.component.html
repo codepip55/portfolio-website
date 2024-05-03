@@ -1,6 +1,11 @@
 <div class="project-container">
 	<div class="project-hero">
-		<img src="{{ project.data.attributes.cover_image }}" alt="" />
+		<img
+			src="https://cms.pepijncolenbrander.com{{
+				project.data.attributes.cover_image.data.attributes.url
+			}}"
+			alt=""
+		/>
 		<div class="image-cover"></div>
 	</div>
 	<div class="project-text">
