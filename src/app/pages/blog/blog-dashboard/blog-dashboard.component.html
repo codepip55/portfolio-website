@@ -15,7 +15,9 @@
 			) {
 				<div class="blog-post" (click)="navigateToBlog(blog.id)">
 					<img
-						src="{{ blog.attributes.cover_image }}"
+						src="https://cms.pepijncolenbrander.com{{
+							blog.attributes.cover_image.data.attributes.url
+						}}"
 						alt=""
 						class="cover-image"
 					/>
