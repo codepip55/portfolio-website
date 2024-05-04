@@ -47,7 +47,9 @@
 								<div class="sqs-block">
 									<img
 										class="photo"
-										src="{{ project.attributes.cover_image }}"
+										src="https://cms.pepijncolenbrander.com{{
+											project.attributes.cover_image.data.attributes.url
+										}}"
 									/>
 									<div class="frame" style="--frame-break: 2">
 										<div class="frame-side-top"></div>
