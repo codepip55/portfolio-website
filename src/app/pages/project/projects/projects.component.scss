@@ -38,7 +38,7 @@
 	}
 	.title {
 		margin-bottom: 2rem;
-		border-top: 1px solid white;
+		border-top: 1px solid black;
 		line-height: 1.1;
 		margin-top: 0.6rem;
 		padding-top: 0.4em;
@@ -79,7 +79,7 @@
 					background-size: cover;
 				}
 				.frame {
-					color: white;
+					color: black;
 					height: 100%;
 					left: 0;
 					pointer-events: none;
@@ -138,7 +138,6 @@
 	);
 	background-size: 0 100%;
 	background-repeat: no-repeat;
-	display: block;
 	transition: 0.5s ease;
 	text-transform: lowercase;
 	white-space: nowrap;
@@ -150,16 +149,6 @@
 	&:hover {
 		background-size: 100% 100%;
 		color: white;
-	}
-}
-// Responsive
-@media (max-width: 1420px) {
-	.text-cell {
-		.title {
-			h1 {
-				font-size: 4rem;
-			}
-		}
 	}
 }
 @media (max-width: 1000px) {
@@ -179,5 +168,15 @@
 	}
 	:host {
 		margin-bottom: 80px;
+	}
+}
+// Responsive
+@media (max-width: 1420px) {
+	.text-cell {
+		.title {
+			h1 {
+				font-size: 4rem;
+			}
+		}
 	}
 }

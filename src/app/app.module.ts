@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ErrorComponent } from './components/error/error.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { ErrorComponent } from './components/error/error.component';
 		HttpClientModule,
 		NavbarComponent,
 		ErrorComponent,
+		FooterComponent,
 	],
 	providers: [provideClientHydration()],
 	bootstrap: [AppComponent],
