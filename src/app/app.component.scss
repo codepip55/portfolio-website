@@ -1,3 +1,26 @@
+:host {
+	overflow-x: hidden;
+}
 .parent-view {
 	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 1.25rem;
+	padding-right: 1.25rem;
+	max-width: 1508px;
+}
+@media (min-width: 1024px) {
+	.parent-view {
+		padding-left: 5rem;
+		padding-right: 5rem;
+	}
+}
+@media (min-width: 640px) {
+	.parent-view {
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
+	}
 }

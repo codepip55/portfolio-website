@@ -14,9 +14,9 @@
 	box-sizing: border-box;
 }
 html {
-	background-color: var(--color-primary-dark);
-	color: white;
+	color: black;
 }
 a {
-	text-decoration: none;
+	text-decoration: inherit;
+	color: inherit;
 }
