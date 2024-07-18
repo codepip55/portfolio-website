@@ -45,6 +45,6 @@ export class BlogPageComponent implements OnInit {
 				b.data.attributes.cover_image,
 			);
 		});
-		return await blogSub;
+		return blogSub;
 	}
 }

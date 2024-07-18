@@ -3,9 +3,10 @@
 }
 .blog-container {
 	width: 100%;
+	position: relative;
 	.blog-text {
-		width: 80%;
-		margin: auto;
+		width: 70%;
+		margin-right: auto;
 		position: relative;
 		.title {
 			font-size: clamp(3rem, 2vw, 8rem);
@@ -50,5 +51,10 @@ mark {
 				font-size: clamp(2rem, 2vw, 6rem);
 			}
 		}
+	}
+}
+@media (min-width: 1024px) {
+	.rectangle {
+		display: block;
 	}
 }
