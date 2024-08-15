@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { StripHtmlPipe } from 'src/app/pipes/strip-html.pipe';
 import { LoaderComponent } from 'src/app/components/loader/loader.component';
 import { SeoService } from '../../../services/seo.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
 	selector: 'app-blog-dashboard',
@@ -27,14 +28,8 @@ export class BlogDashboardComponent implements OnInit {
 		this.loading = true;
 
 		this.strapiService.getBlogs().subscribe((blogs: any) => {
-			let unsortedBlogs = blogs.data;
-			let sortedBlogs = unsortedBlogs.sort(
-				(a, b) =>
-					new Date(b.attributes.publishedAt).getTime() -
-					new Date(a.attributes.publishedAt).getTime(),
-			);
-			this.blogPosts = sortedBlogs;
-			console.log(sortedBlogs);
+			this.blogPosts = blogs;
+			this.getHeaderImages(blogs);
 		});
 
 		this.loading = false;
@@ -48,5 +43,14 @@ export class BlogDashboardComponent implements OnInit {
 
 	public navigateToBlog(id: string) {
 		this.router.navigate(['/blog/' + id]);
+	}
+
+	public async getHeaderImages(blogs: any) {
+		for (let blog of blogs) {
+			const mediaUrl = blog['_links']['wp:featuredmedia'][0].href;
+			const mediaResponseObservable = this.strapiService.getMedia(mediaUrl);
+			const mediaResponse = await firstValueFrom(mediaResponseObservable);
+			blog.header_image = mediaResponse['guid']['rendered'];
+		}
 	}
 }

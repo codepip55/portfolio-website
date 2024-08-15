@@ -8,28 +8,18 @@
 			<app-loader size="lg"></app-loader>
 		}
 		<div class="">
-			@for (
-				blog of blogPosts;
-				track blog.attributes.title;
-				let first = $first
-			) {
+			@for (blog of blogPosts; track blog.title.rendered; let first = $first) {
 				<div class="blog-post" (click)="navigateToBlog(blog.id)">
-					<img
-						src="https://cms.pepijncolenbrander.com{{
-							blog.attributes.cover_image.data.attributes.url
-						}}"
-						alt=""
-						class="cover-image"
-					/>
+					<img src="{{ blog.header_image }}" alt="" class="cover-image" />
 					<div class="text">
 						<div class="title">
-							<mark>{{ blog.attributes.title }}</mark>
+							<mark>{{ blog.title.rendered }}</mark>
 						</div>
 						<div class="published-on">
 							Published on
-							{{ blog.attributes.publishedAt | date: "EEEE, MMMM d, y" }}
+							{{ blog.date_gmt | date: "EEEE, MMMM d, y" }}
 						</div>
-						<div class="body">{{ blog.attributes.body | htmlStrip }}</div>
+						<div class="body">{{ blog.excerpt.rendered | htmlStrip }}</div>
 
 						<span class="read-more">
 							read more
