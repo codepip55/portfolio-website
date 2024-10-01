@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StrapiService } from 'src/app/services/strapi.service';
 import { SeoService } from '../../services/seo.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
 	selector: 'app-downloads',
@@ -19,15 +20,35 @@ export class DownloadsComponent implements OnInit {
 	public downloads: any[] = [];
 
 	ngOnInit(): void {
-		this.strapiService.getDownloads().subscribe((res: any) => {
-			this.downloads = res.data;
-			console.log(res.data);
-		});
+		this.getDownloads();
 
 		this.seoService.generateTags(
 			'Downloads',
 			'Download some useful tools.',
 			'https://www.flaxfields.co.uk/cms-files/5dce/5dcea80679aa2.jpg',
 		);
+	}
+	async getDownloads() {
+		let downloads$ = this.strapiService.getDownloads();
+		let downloads: any = await firstValueFrom(downloads$);
+		for (const tool of downloads) {
+			console.log(tool);
+			let toolItem = {
+				title: tool.title.rendered,
+				description: tool.acf.description,
+				url: tool.acf.url,
+				tag: tool.acf.tag,
+				featuredImageId: tool.featured_media,
+				image: '',
+			};
+			let image$ = this.getImage(toolItem.featuredImageId);
+			let image: any = await firstValueFrom(image$);
+			toolItem.image = image.source_url;
+
+			this.downloads.push(toolItem);
+		}
+	}
+	public getImage(id: string) {
+		return this.strapiService.getImage(id);
 	}
 }

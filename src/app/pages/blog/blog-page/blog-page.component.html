@@ -1,12 +1,24 @@
 <div class="blog-container">
+	<div class="breadcrumb">
+		<a href="/blog" class="return-link"><mark>Return to dashboard</mark></a>
+	</div>
+	<div class="header-container">
+		<!-- Grid with two columns. On the left is the image and on the left is the title with under it the publish date and the author -->
+		<div class="header-image">
+			<img [src]="blog.image" alt="Blog image" class="image" />
+		</div>
+		<div class="header-content">
+			<div class="title">{{ blog.title }}</div>
+			<div class="publish-date">
+				Published on {{ blog.publishedDate | date }}
+			</div>
+			<div class="author">By {{ blog.author }}</div>
+		</div>
+	</div>
 	<div class="blog-text">
 		@if (!loading) {
-			<a href="/blog" class="return-link"><mark>Return to dashboard</mark></a>
-			<div class="title">{{ blog.data.attributes.title }}</div>
-			<div
-				class="body ck-content"
-				[innerHTML]="blog.data.attributes.body | imageUrl"
-			></div>
+			<div class="title">{{ blog.title }}</div>
+			<article class="body ck-content" [innerHTML]="blog.content"></article>
 		} @else {
 			<app-loader size="md"></app-loader>
 		}

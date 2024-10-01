@@ -7,12 +7,7 @@
 						<div class="image-container">
 							<div class="col-1">
 								<div class="sqs-block">
-									<img
-										class="photo"
-										src="https://cms.pepijncolenbrander.com{{
-											project.attributes.cover_image.data.attributes.url
-										}}"
-									/>
+									<img class="photo" src="{{ project.image }}" alt="" />
 									<div class="frame" style="--frame-break: 2">
 										<div class="frame-side-top"></div>
 										<div class="frame-side-right"></div>
@@ -29,10 +24,10 @@
 				<div class="text-cell">
 					<div class="label">Project #{{ i + 1 }}</div>
 					<div class="title">
-						<h1>{{ project.attributes.title }}</h1>
+						<h1>{{ project.title }}</h1>
 					</div>
 					<div class="description">
-						<p>{{ project.attributes.description }}</p>
+						<p>{{ project.description }}</p>
 					</div>
 					<a (click)="navigateToProject(project.id)" class="button">
 						Read More
@@ -45,12 +40,7 @@
 						<div class="image-container">
 							<div class="col-1">
 								<div class="sqs-block">
-									<img
-										class="photo"
-										src="https://cms.pepijncolenbrander.com{{
-											project.attributes.cover_image.data.attributes.url
-										}}"
-									/>
+									<img class="photo" src="{{ project.image }}" alt="" />
 									<div class="frame" style="--frame-break: 2">
 										<div class="frame-side-top"></div>
 										<div class="frame-side-right"></div>

@@ -3,26 +3,22 @@
 		<h1 class="header">Some tools for you.</h1>
 	</div>
 	<div class="grid">
-		@for (download of downloads; track download.attributes.title) {
+		@for (download of downloads; track download.title) {
 			<div class="card">
 				<div class="card-wrap">
 					<div
 						class="card-image"
-						style="background-image: linear-gradient(to top, rgba(0, 0, 0, .4) 0, rgba(0, 0, 0, .4) 100%), url('https://cms.pepijncolenbrander.com{{
-							download.attributes.image.data.attributes.url
+						style="background-image: linear-gradient(to top, rgba(0, 0, 0, .4) 0, rgba(0, 0, 0, .4) 100%), url('{{
+							download.image
 						}}');"
 					></div>
 					<div class="card-content">
-						<div class="card-tag">{{ download.attributes.tag }}</div>
-						<h2 class="card-title">{{ download.attributes.title }}</h2>
+						<div class="card-tag">{{ download.tag }}</div>
+						<h2 class="card-title">{{ download.title }}</h2>
 						<div class="card-excerpt">
-							<p>{{ download.attributes.excerpt }}</p>
+							<p>{{ download.description }}</p>
 						</div>
-						<a
-							href="{{ download.attributes.url }}"
-							target="_blank"
-							class="card-link"
-						>
+						<a href="{{ download.url }}" target="_blank" class="card-link">
 							Download
 						</a>
 					</div>

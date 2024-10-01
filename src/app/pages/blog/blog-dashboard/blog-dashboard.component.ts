@@ -24,13 +24,10 @@ export class BlogDashboardComponent implements OnInit {
 	public blogPosts: any[] = [];
 	public loading: boolean = false;
 
-	ngOnInit(): void {
+	async ngOnInit() {
 		this.loading = true;
 
-		this.strapiService.getBlogs().subscribe((blogs: any) => {
-			this.blogPosts = blogs;
-			this.getHeaderImages(blogs);
-		});
+		await this.getBlogs();
 
 		this.loading = false;
 
@@ -40,17 +37,28 @@ export class BlogDashboardComponent implements OnInit {
 			'https://clickfirstmarketing.com/wp-content/uploads/Purpose-of-Blogging.jpeg',
 		);
 	}
-
+	private async getBlogs() {
+		let blogsResponse$ = this.strapiService.getBlogs();
+		let blogsResponse = (await firstValueFrom(blogsResponse$)) as any[];
+		for (const blog of blogsResponse) {
+			let blogPost = {
+				id: blog.id,
+				publishedDate: blog.date_gmt,
+				title: blog.title.rendered,
+				content: blog.acf.content,
+				featured_image_id: blog.featured_media,
+				image: null,
+			};
+			let image$ = await this.getImage(blogPost.featured_image_id);
+			let image: any = await firstValueFrom(image$);
+			blogPost.image = image.source_url;
+			this.blogPosts.push(blogPost);
+		}
+	}
 	public navigateToBlog(id: string) {
 		this.router.navigate(['/blog/' + id]);
 	}
-
-	public async getHeaderImages(blogs: any) {
-		for (let blog of blogs) {
-			const mediaUrl = blog['_links']['wp:featuredmedia'][0].href;
-			const mediaResponseObservable = this.strapiService.getMedia(mediaUrl);
-			const mediaResponse = await firstValueFrom(mediaResponseObservable);
-			blog.header_image = mediaResponse['guid']['rendered'];
-		}
+	public getImage(id: string) {
+		return this.strapiService.getImage(id);
 	}
 }

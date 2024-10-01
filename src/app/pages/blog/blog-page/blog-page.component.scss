@@ -3,28 +3,58 @@
 }
 .blog-container {
 	width: 100%;
-	position: relative;
 	.blog-text {
 		width: 70%;
 		margin-right: auto;
+	}
+}
+.header-container {
+	display: flex;
+	align-items: center;
+	margin-bottom: 60px;
+	.header-image {
 		position: relative;
-		.title {
-			font-size: clamp(3rem, 2vw, 8rem);
-			text-transform: capitalize;
-		}
-		.return-link mark {
-			color: #000;
-			background-size: 0 100%;
-			transition: 0.5s ease;
-			display: inline;
-			background-repeat: no-repeat;
-			padding: 2px;
-		}
-		.return-link:hover mark {
-			background-size: 100% 100%;
-			color: #fff;
+		display: block;
+		height: 0;
+		padding-bottom: 40%;
+		overflow: hidden;
+		margin: 0;
+		z-index: 2;
+		width: 40%;
+		img {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
 		}
 	}
+	.header-content {
+		width: 60%;
+		padding: 0 20px;
+		.title {
+			font-size: clamp(2rem, 2vw, 6rem);
+			margin-bottom: 20px;
+		}
+		.publish-date,
+		.author {
+			color: #9a9a9a;
+		}
+	}
+}
+.breadcrumb {
+	padding: 40px 0;
+}
+.return-link mark {
+	color: #b5b5b5;
+	background-size: 0 100%;
+	transition: 0.5s ease;
+	display: inline;
+	background-repeat: no-repeat;
+	padding: 2px;
+}
+.return-link:hover mark {
+	background-size: 100% 100%;
+	color: #fff;
 }
 mark {
 	background-color: transparent;
