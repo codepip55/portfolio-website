@@ -68,7 +68,7 @@ export class StrapiService {
 				),
 			);
 	}
-	getImage(id: string) {
+	getMedia(id: string) {
 		return this.http
 			.get(`${this.cmsUrl}/media/${id}`)
 			.pipe(

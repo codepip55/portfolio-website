@@ -62,6 +62,6 @@ export class ProjectInfoComponent implements OnInit {
 		);
 	}
 	public getImage(id: string) {
-		return this.strapiService.getImage(id);
+		return this.strapiService.getMedia(id);
 	}
 }

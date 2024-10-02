@@ -71,6 +71,6 @@ export class ProjectsComponent implements OnInit {
 		this.router.navigate(['/project/' + id]);
 	}
 	public getImage(id: string) {
-		return this.strapiService.getImage(id);
+		return this.strapiService.getMedia(id);
 	}
 }

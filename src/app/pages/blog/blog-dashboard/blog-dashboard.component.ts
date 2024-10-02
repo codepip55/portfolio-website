@@ -59,6 +59,6 @@ export class BlogDashboardComponent implements OnInit {
 		this.router.navigate(['/blog/' + id]);
 	}
 	public getImage(id: string) {
-		return this.strapiService.getImage(id);
+		return this.strapiService.getMedia(id);
 	}
 }

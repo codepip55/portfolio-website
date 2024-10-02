@@ -18,7 +18,17 @@
 						<div class="card-excerpt">
 							<p>{{ download.description }}</p>
 						</div>
-						<a href="{{ download.url }}" target="_blank" class="card-link">
+						<a
+							href="{{
+								download.tag === 'File'
+									? download.file
+									: download.file
+									  ? download.file
+									  : download.url
+							}}"
+							target="_blank"
+							class="card-link"
+						>
 							Download
 						</a>
 					</div>

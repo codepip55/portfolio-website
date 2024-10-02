@@ -37,18 +37,25 @@ export class DownloadsComponent implements OnInit {
 				title: tool.title.rendered,
 				description: tool.acf.description,
 				url: tool.acf.url,
+				file: tool.acf.file,
 				tag: tool.acf.tag,
 				featuredImageId: tool.featured_media,
 				image: '',
 			};
-			let image$ = this.getImage(toolItem.featuredImageId);
+			let image$ = this.getMedia(toolItem.featuredImageId);
 			let image: any = await firstValueFrom(image$);
 			toolItem.image = image.source_url;
+
+			if (toolItem.file) {
+				let file$ = this.getMedia(toolItem.file);
+				let file: any = await firstValueFrom(file$);
+				toolItem.file = file.source_url;
+			}
 
 			this.downloads.push(toolItem);
 		}
 	}
-	public getImage(id: string) {
-		return this.strapiService.getImage(id);
+	public getMedia(id: string) {
+		return this.strapiService.getMedia(id);
 	}
 }
