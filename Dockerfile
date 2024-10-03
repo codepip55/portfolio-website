@@ -8,8 +8,6 @@ ENV NODE_ENV=production
 
 RUN npm install --include dev
 
-RUN node scripts/generate-routes-file.js
-
 RUN npm run build:ssr
 
 CMD ["npm", "run", "serve:ssr"]
