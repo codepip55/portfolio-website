@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StrapiService } from 'src/app/services/strapi.service';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { firstValueFrom } from 'rxjs';
 	templateUrl: './projects.component.html',
 	styleUrl: './projects.component.scss',
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, OnDestroy {
 	constructor(
 		private strapiService: StrapiService,
 		private router: Router,
@@ -21,20 +21,15 @@ export class ProjectsComponent implements OnInit {
 
 	public projects: any[] = [];
 	public loading: boolean = false;
+	public innerWidth: any;
 
 	ngOnInit(): void {
+		this.innerWidth = window.innerWidth;
+		window.addEventListener('resize', () => {
+			this.innerWidth = window.innerWidth;
+		});
 		this.loading = true;
 
-		// this.strapiService.getProjects().subscribe((projects: any) => {
-		// 	let unsortedProjects = projects.data;
-		// 	let sortedProjects = unsortedProjects.sort(
-		// 		(a, b) =>
-		// 			new Date(b.attributes.publishedAt).getTime() -
-		// 			new Date(a.attributes.publishedAt).getTime(),
-		// 	);
-		// 	this.projects = sortedProjects;
-		// 	console.log(sortedProjects);
-		// });
 		this.getProjects();
 
 		this.loading = false;
@@ -45,6 +40,12 @@ export class ProjectsComponent implements OnInit {
 			'https://www.rc.virginia.edu/images/accord/project.png',
 		);
 	}
+	ngOnDestroy() {
+		window.removeEventListener('resize', () => {
+			this.innerWidth = window.innerWidth;
+		});
+	}
+
 	private async getProjects() {
 		let projects$ = this.strapiService.getProjects();
 		let projects: any = await firstValueFrom(projects$);

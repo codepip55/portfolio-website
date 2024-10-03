@@ -22,4 +22,61 @@ nav {
 			}
 		}
 	}
+	.hamburger {
+		display: none; /* Hidden by default */
+		font-size: 30px;
+		cursor: pointer;
+		background: none;
+		border: none;
+		margin: 10px 0 10px auto;
+	}
+}
+// Below 600px, navbar in middle of screen
+@media (max-width: 600px) {
+	:host {
+		margin-right: auto;
+	}
+	// Last child in .links, no margin-right on .link
+	nav {
+		.links {
+			justify-content: center;
+			.link {
+				margin-right: 0;
+			}
+		}
+	}
+}
+// Below 400px, hamburger icon and links right
+@media (max-width: 400px) {
+	:host {
+		margin-right: 0;
+		width: 100%;
+	}
+
+	nav {
+		.links {
+			justify-content: center;
+			margin: 0;
+			flex-direction: column;
+			display: none; /* Hide links initially */
+		}
+
+		.hamburger {
+			display: block; /* Show hamburger icon */
+		}
+
+		&.active .links {
+			display: flex; /* Show links when nav is active */
+			border-bottom: 1px solid #3a3a3a;
+			padding-bottom: 25px;
+		}
+	}
+}
+
+@media (max-width: 400px) {
+	nav {
+		.links {
+			align-items: center; /* Center the links */
+		}
+	}
 }

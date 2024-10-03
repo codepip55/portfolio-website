@@ -41,7 +41,7 @@
 	opacity: 1;
 	transform: translateY(0px) scale(1) translateZ(0px);
 	position: relative;
-	width: 100%;
+	width: 70vw;
 	height: auto;
 	aspect-ratio: 16/9;
 	margin: 200px auto 250px;
@@ -95,5 +95,165 @@ a {
 	&:not(:hover)::after {
 		transform: scaleX(1);
 		transform-origin: left;
+	}
+}
+// Responsive
+// Below 1500px
+@media (max-width: 1500px) {
+	.title {
+		h1 {
+			font-size: 100px;
+			line-height: 112px;
+		}
+		.motto {
+			h2 {
+				font-size: 40px;
+				line-height: 52px;
+			}
+		}
+	}
+	.text {
+		margin-bottom: 100px;
+		div {
+			font-size: 24px;
+			line-height: 36px;
+		}
+		// 3rd child font-size = 25px
+		div:nth-child(3) {
+			font-size: 25px;
+		}
+	}
+}
+// Below 1200px
+@media (max-width: 1200px) {
+	.title {
+		h1 {
+			font-size: 80px;
+			line-height: 92px;
+		}
+		.motto {
+			h2 {
+				font-size: 32px;
+				line-height: 44px;
+			}
+		}
+	}
+	.image {
+		width: 80vw;
+	}
+	.text {
+		margin-top: -100px;
+		margin-bottom: 50px;
+		div {
+			font-size: 20px;
+			line-height: 32px;
+		}
+		// 3rd child font-size = 22px
+		div:nth-child(3) {
+			font-size: 22px;
+		}
+	}
+}
+// Below 1000px
+@media (max-width: 1000px) {
+	.title {
+		h1 {
+			font-size: 60px;
+			line-height: 72px;
+		}
+		.motto {
+			h2 {
+				font-size: 28px;
+				line-height: 40px;
+			}
+		}
+	}
+	.text {
+		margin-top: -100px;
+		margin-bottom: 50px;
+		div {
+			font-size: 18px;
+			line-height: 30px;
+		}
+		// 3rd child font-size = 20px
+		div:nth-child(3) {
+			font-size: 20px;
+		}
+	}
+}
+// Below 600px
+@media (max-width: 600px) {
+	.image {
+		margin-top: 100px;
+		border-radius: 25px;
+	}
+	.text {
+		margin-top: -200px;
+	}
+}
+// Below 500px
+@media (max-width: 500px) {
+	.title {
+		h1 {
+			font-size: 50px;
+			line-height: 62px;
+		}
+		.motto {
+			h2 {
+				font-size: 24px;
+				line-height: 36px;
+			}
+		}
+	}
+	.text {
+		margin-top: -100px;
+		margin-bottom: 50px;
+		div {
+			font-size: 16px;
+			line-height: 28px;
+		}
+		// 3rd child font-size = 18px
+		div:nth-child(3) {
+			font-size: 18px;
+		}
+	}
+}
+// Below 450px
+@media (max-width: 450px) {
+	.title {
+		h1 {
+			font-size: 40px;
+			line-height: 52px;
+		}
+		.motto {
+			h2 {
+				font-size: 20px;
+				line-height: 32px;
+			}
+		}
+	}
+	.text {
+		margin-top: -200px;
+		margin-bottom: 50px;
+		div {
+			font-size: 16px;
+			line-height: 26px;
+		}
+		div:nth-child(3) {
+			font-size: 16px;
+		}
+	}
+}
+// Below 400px
+@media (max-width: 400px) {
+	.text {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.image {
+		margin-top: 50px;
+	}
+	.title {
+		margin-top: 10px;
 	}
 }

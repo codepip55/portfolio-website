@@ -17,7 +17,6 @@
 	</div>
 	<div class="blog-text">
 		@if (!loading) {
-			<div class="title">{{ blog.title }}</div>
 			<article class="body ck-content" [innerHTML]="blog.content"></article>
 		} @else {
 			<app-loader size="md"></app-loader>

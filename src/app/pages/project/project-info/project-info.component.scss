@@ -88,3 +88,21 @@ mark {
 		display: block;
 	}
 }
+// Below 600px
+@media screen and (max-width: 600px) {
+	.header-container {
+		flex-direction: column;
+		.header-image {
+			width: 100%;
+			padding-bottom: 60%;
+		}
+		.header-content {
+			width: 100%;
+			padding: 0;
+			.title {
+				font-size: clamp(2rem, 2vw, 6rem);
+				margin-bottom: 20px;
+			}
+		}
+	}
+}

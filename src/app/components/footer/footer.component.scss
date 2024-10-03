@@ -78,3 +78,9 @@ a {
 		transform-origin: left;
 	}
 }
+// Below 800px vw, add top border to footer
+@media (max-width: 800px) {
+	footer {
+		border-top: 1px solid #ddd;
+	}
+}

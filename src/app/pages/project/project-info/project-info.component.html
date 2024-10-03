@@ -1,6 +1,6 @@
 <div class="project-container">
 	<div class="breadcrumb">
-		<a href="/blog" class="return-link"><mark>Return to dashboard</mark></a>
+		<a href="/projects" class="return-link"><mark>Return to dashboard</mark></a>
 	</div>
 	<div class="header-container">
 		<div class="header-image">
@@ -16,7 +16,6 @@
 	</div>
 	<div class="project-text">
 		@if (!loading) {
-			<div class="title">{{ project.title }}</div>
 			<article class="body ck-content" [innerHTML]="project.content"></article>
 		} @else {
 			<app-loader size="md"></app-loader>
