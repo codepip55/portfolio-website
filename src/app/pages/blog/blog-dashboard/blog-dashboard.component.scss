@@ -1,14 +1,14 @@
 :host {
-	width: calc(var(--body-width) - 14px);
+	width: 100%;
 }
 .dashboard-container {
 	.header h1 {
 		font-size: 3rem;
 		font-weight: 100;
 		text-align: center;
+		margin-bottom: 70px;
 	}
 	.grid {
-		width: 80%;
 		margin: 10px auto;
 	}
 }
@@ -24,7 +24,7 @@
 	text-decoration: none;
 	&:hover .text .title mark {
 		background-size: 100% 100%;
-		color: #000;
+		color: #fff;
 	}
 	.cover-image {
 		width: 40%;
@@ -37,7 +37,7 @@
 			transition: all 0.3s ease-in-out;
 			-o-object-fit: cover;
 			object-fit: cover;
-			background: #fff;
+			background: #000;
 			position: absolute;
 			left: 0;
 			top: 0;
@@ -52,7 +52,7 @@
 		justify-content: center;
 		align-items: flex-start;
 		.title mark {
-			color: #fff;
+			color: #000;
 			background-size: 0 100%;
 			transition: 0.5s ease;
 			display: inline;
@@ -75,7 +75,7 @@
 			bottom: 0;
 			margin-bottom: 20px;
 			img {
-				color: white;
+				color: black;
 				transition: all 0.3s ease;
 				margin-left: max(0.5050505051vw, 1rem);
 				font-size: max(0.7575757576vw, 1.5rem);
@@ -96,8 +96,8 @@ mark {
 	background-color: transparent;
 	background-image: linear-gradient(
 		transparent 14%,
-		#fff 15%,
-		#fff 80%,
+		#000 15%,
+		#000 80%,
 		transparent 70%
 	);
 	color: #000;
@@ -105,7 +105,6 @@ mark {
 // Responsive
 @media screen and (max-width: 768px) {
 	:host {
-		width: 90%;
 		margin: 10px auto;
 	}
 	.dashboard-container {

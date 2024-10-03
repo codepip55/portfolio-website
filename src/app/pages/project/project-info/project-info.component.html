@@ -1,23 +1,22 @@
 <div class="project-container">
-	<div class="project-hero">
-		<img
-			src="https://cms.pepijncolenbrander.com{{
-				project.data.attributes.cover_image.data.attributes.url
-			}}"
-			alt=""
-		/>
-		<div class="image-cover"></div>
+	<div class="breadcrumb">
+		<a href="/projects" class="return-link"><mark>Return to dashboard</mark></a>
+	</div>
+	<div class="header-container">
+		<div class="header-image">
+			<img [src]="project.image" alt="Blog image" class="image" />
+		</div>
+		<div class="header-content">
+			<div class="title">{{ project.title }}</div>
+			<div class="publish-date">
+				Published on {{ project.publishedDate | date }}
+			</div>
+			<div class="author">By {{ project.author }}</div>
+		</div>
 	</div>
 	<div class="project-text">
 		@if (!loading) {
-			<a href="/projects" class="return-link"
-				><mark>Return to dashboard</mark></a
-			>
-			<div class="title">{{ project.data.attributes.title }}</div>
-			<div
-				class="body ck-content"
-				[innerHTML]="project.data.attributes.body | imageUrl"
-			></div>
+			<article class="body ck-content" [innerHTML]="project.content"></article>
 		} @else {
 			<app-loader size="md"></app-loader>
 		}

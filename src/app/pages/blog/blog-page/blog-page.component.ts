@@ -4,13 +4,12 @@ import { StrapiService } from 'src/app/services/strapi.service';
 import { Subscription, firstValueFrom, lastValueFrom } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SeoService } from 'src/app/services/seo.service';
-import { ImageUrlPipe } from 'src/app/pipes/image-url.pipe';
 import { LoaderComponent } from 'src/app/components/loader/loader.component';
 
 @Component({
 	selector: 'app-blog-page',
 	standalone: true,
-	imports: [CommonModule, ImageUrlPipe, LoaderComponent],
+	imports: [CommonModule, LoaderComponent],
 	templateUrl: './blog-page.component.html',
 	styleUrl: './blog-page.component.scss',
 })
@@ -29,22 +28,42 @@ export class BlogPageComponent implements OnInit {
 
 		let blogId = this.activatedRoute.snapshot.paramMap.get('id');
 		// @ts-ignore
-		this.getBlog(blogId).then(() => {
-			this.loading = false;
-		});
+		this.getBlog(blogId);
+
+		this.loading = false;
 	}
 
-	private async getBlog(id: string): Promise<Subscription> {
-		let blog = this.strapiService.getBlog(id);
-		let blogSub = blog.subscribe((b: any) => {
-			this.blog = b;
+	private async getBlog(id: string) {
+		let blog$ = this.strapiService.getBlog(id);
+		let blog: any = await firstValueFrom(blog$);
+		let blogPost = {
+			id: blog.id,
+			publishedDate: blog.date_gmt,
+			title: blog.title.rendered,
+			description: blog.acf.description,
+			content: blog.acf.content,
+			featuredImageId: blog.featured_media,
+			image: '',
+			authorId: blog.author,
+			author: null,
+		};
+		let image$ = await this.getImage(blogPost.featuredImageId);
+		let image: any = await firstValueFrom(image$);
+		blogPost.image = image.source_url;
 
-			this.seoService.generateTags(
-				b.data.attributes.title,
-				b.data.attributes.body,
-				b.data.attributes.cover_image,
-			);
-		});
-		return await blogSub;
+		let author$ = this.strapiService.getUser(blogPost.authorId);
+		let author: any = await firstValueFrom(author$);
+		blogPost.author = author.name;
+
+		this.blog = blogPost;
+
+		this.seoService.generateTags(
+			blogPost.title,
+			blogPost.description,
+			blogPost.image,
+		);
+	}
+	public getImage(id: string) {
+		return this.strapiService.getMedia(id);
 	}
 }

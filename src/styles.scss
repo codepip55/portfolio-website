@@ -1,6 +1,5 @@
 @import "./assets/scss/_typography";
 @import "./theme/variables";
-@import "./assets/scss/dynamicText";
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css");
 
 * {
@@ -14,9 +13,69 @@
 	box-sizing: border-box;
 }
 html {
-	background-color: var(--color-primary-dark);
-	color: white;
+	color: black;
 }
 a {
-	text-decoration: none;
+	text-decoration: inherit;
+	color: inherit;
+}
+.body {
+	p {
+		font-size: clamp(1rem, 2vw, 1.2rem);
+		line-height: 150%;
+		margin-bottom: 20px;
+	}
+	ul {
+		list-style: none;
+		padding: 0;
+		margin-left: 1em;
+		li {
+			font-size: clamp(1rem, 2vw, 1.2rem);
+			line-height: 150%;
+			margin-bottom: 20px;
+			&:before {
+				content: "•";
+				color: #000;
+				display: inline-block;
+				width: 1em;
+			}
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+h1 {
+	font-size: 2.125rem;
+	font-weight: bold;
+}
+h2 {
+	font-size: 1.875rem;
+	font-weight: bold;
+}
+h3 {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+h4 {
+	font-size: 1.25rem;
+	font-weight: bold;
+}
+// Below 400px, reduce font size
+@media (max-width: 400px) {
+	h1 {
+		font-size: 1.5rem;
+	}
+	h2 {
+		font-size: 1.25rem;
+	}
+	h3 {
+		font-size: 1rem;
+	}
+	h4 {
+		font-size: 0.875rem;
+	}
+	p {
+		font-size: 1rem;
+	}
 }

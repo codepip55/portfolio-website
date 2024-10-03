@@ -1,90 +1,82 @@
-.content {
-	width: 120px;
-	min-height: 100vh;
-	height: 100%;
-	border-right: 1px solid white;
-	.logo {
-		width: 60%;
-		margin: 0 auto;
-		margin-bottom: 10px;
-		padding-top: 10px;
-		display: block;
-		cursor: pointer;
-	}
-	.divider {
-		background-color: white;
-		height: 1px;
-		width: 80%;
-		margin: 10px auto;
-	}
-	.folder-icon,
-	.download-icon,
-	.blog-icon {
-		width: 40px;
-		margin: 0 auto;
-	}
-	.folder-text,
-	.download-text,
-	.blog-text {
-		text-align: center;
-	}
-	.projects,
-	.downloads,
-	.blog {
-		width: 100%;
-		margin: 10px auto;
-		margin-top: 25px;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		cursor: pointer;
-	}
-}
-
-.small-screen-nav {
-	display: none;
+:host {
+	margin-left: auto;
 }
 nav {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	margin-top: -5px;
-	width: 100%;
-	z-index: 9;
-}
-
-nav ul {
-	background-color: #fff;
-	display: flex;
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-	height: 60px;
-}
-
-nav li {
-	color: #777;
-	cursor: pointer;
-	flex: 1;
-	padding: 10px;
-	text-align: center;
-}
-
-nav ul li p {
-	font-size: 12px;
-	margin: 2px 0;
-}
-
-nav ul li:hover,
-nav ul li.active {
-	color: var(--color-accent-dark);
-	font-weight: 900;
-}
-@media (max-width: 650px) {
-	.content {
-		display: none;
+	position: relative;
+	margin-bottom: 10px;
+	.links {
+		display: flex;
+		gap: 40px;
+		letter-spacing: 0;
+		line-height: 1;
+		padding-top: 30px;
+		.link {
+			color: #3a3a3a;
+			text-decoration: none;
+			margin-right: 30px;
+			a {
+				display: inline-block;
+				position: relative;
+				color: inherit;
+				text-decoration: inherit;
+			}
+		}
 	}
-	.small-screen-nav {
-		display: block;
+	.hamburger {
+		display: none; /* Hidden by default */
+		font-size: 30px;
+		cursor: pointer;
+		background: none;
+		border: none;
+		margin: 10px 0 10px auto;
+	}
+}
+// Below 600px, navbar in middle of screen
+@media (max-width: 600px) {
+	:host {
+		margin-right: auto;
+	}
+	// Last child in .links, no margin-right on .link
+	nav {
+		.links {
+			justify-content: center;
+			.link {
+				margin-right: 0;
+			}
+		}
+	}
+}
+// Below 400px, hamburger icon and links right
+@media (max-width: 400px) {
+	:host {
+		margin-right: 0;
+		width: 100%;
+	}
+
+	nav {
+		.links {
+			justify-content: center;
+			margin: 0;
+			flex-direction: column;
+			display: none; /* Hide links initially */
+		}
+
+		.hamburger {
+			display: block; /* Show hamburger icon */
+		}
+
+		&.active .links {
+			display: flex; /* Show links when nav is active */
+			border-bottom: 1px solid #3a3a3a;
+			padding-bottom: 25px;
+		}
+	}
+}
+
+@media (max-width: 400px) {
+	nav {
+		.links {
+			align-items: center; /* Center the links */
+		}
 	}
 }

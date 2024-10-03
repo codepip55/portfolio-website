@@ -1,6 +1,6 @@
 <div class="dashboard-container">
 	<div class="header">
-		<h1>What we've written <strong>for you</strong></h1>
+		<h1 style="font-weight: 400">What I've written for you</h1>
 	</div>
 
 	<div class="grid">
@@ -8,28 +8,18 @@
 			<app-loader size="lg"></app-loader>
 		}
 		<div class="">
-			@for (
-				blog of blogPosts;
-				track blog.attributes.title;
-				let first = $first
-			) {
+			@for (blog of blogPosts; track blog.title; let first = $first) {
 				<div class="blog-post" (click)="navigateToBlog(blog.id)">
-					<img
-						src="https://cms.pepijncolenbrander.com{{
-							blog.attributes.cover_image.data.attributes.url
-						}}"
-						alt=""
-						class="cover-image"
-					/>
+					<img src="{{ blog.image }}" alt="" class="cover-image" />
 					<div class="text">
 						<div class="title">
-							<mark>{{ blog.attributes.title }}</mark>
+							<mark>{{ blog.title }}</mark>
 						</div>
 						<div class="published-on">
 							Published on
-							{{ blog.attributes.publishedAt | date: "EEEE, MMMM d, y" }}
+							{{ blog.publishedDate | date: "EEEE, MMMM d, y" }}
 						</div>
-						<div class="body">{{ blog.attributes.body | htmlStrip }}</div>
+						<div class="body">{{ blog.content | htmlStrip }}</div>
 
 						<span class="read-more">
 							read more

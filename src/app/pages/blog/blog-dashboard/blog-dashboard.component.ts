@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { StripHtmlPipe } from 'src/app/pipes/strip-html.pipe';
 import { LoaderComponent } from 'src/app/components/loader/loader.component';
 import { SeoService } from '../../../services/seo.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
 	selector: 'app-blog-dashboard',
@@ -23,19 +24,10 @@ export class BlogDashboardComponent implements OnInit {
 	public blogPosts: any[] = [];
 	public loading: boolean = false;
 
-	ngOnInit(): void {
+	async ngOnInit() {
 		this.loading = true;
 
-		this.strapiService.getBlogs().subscribe((blogs: any) => {
-			let unsortedBlogs = blogs.data;
-			let sortedBlogs = unsortedBlogs.sort(
-				(a, b) =>
-					new Date(b.attributes.publishedAt).getTime() -
-					new Date(a.attributes.publishedAt).getTime(),
-			);
-			this.blogPosts = sortedBlogs;
-			console.log(sortedBlogs);
-		});
+		await this.getBlogs();
 
 		this.loading = false;
 
@@ -45,8 +37,28 @@ export class BlogDashboardComponent implements OnInit {
 			'https://clickfirstmarketing.com/wp-content/uploads/Purpose-of-Blogging.jpeg',
 		);
 	}
-
+	private async getBlogs() {
+		let blogsResponse$ = this.strapiService.getBlogs();
+		let blogsResponse = (await firstValueFrom(blogsResponse$)) as any[];
+		for (const blog of blogsResponse) {
+			let blogPost = {
+				id: blog.id,
+				publishedDate: blog.date_gmt,
+				title: blog.title.rendered,
+				content: blog.acf.content,
+				featured_image_id: blog.featured_media,
+				image: null,
+			};
+			let image$ = await this.getImage(blogPost.featured_image_id);
+			let image: any = await firstValueFrom(image$);
+			blogPost.image = image.source_url;
+			this.blogPosts.push(blogPost);
+		}
+	}
 	public navigateToBlog(id: string) {
 		this.router.navigate(['/blog/' + id]);
+	}
+	public getImage(id: string) {
+		return this.strapiService.getMedia(id);
 	}
 }

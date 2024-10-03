@@ -3,56 +3,68 @@
 }
 .project-container {
 	width: 100%;
-	.project-hero {
+	.project-text {
+		width: 70%;
+		margin-right: auto;
+	}
+}
+.header-container {
+	display: flex;
+	align-items: center;
+	margin-bottom: 60px;
+	.header-image {
 		position: relative;
+		display: block;
+		height: 0;
+		padding-bottom: 40%;
+		overflow: hidden;
+		margin: 0;
+		z-index: 2;
+		width: 40%;
 		img {
+			position: absolute;
 			width: 100%;
-			height: 300px;
+			height: 100%;
 			object-fit: cover;
 		}
-		.image-cover {
-			height: 100px;
-			width: 100%;
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			background-image: linear-gradient(
-				to bottom,
-				rgba(0, 0, 0, 0) 40%,
-				var(--color-primary-dark) 80%
-			);
-		}
 	}
-	.project-text {
-		width: 80%;
-		margin: auto;
-		position: relative;
+	.header-content {
+		width: 60%;
+		padding: 0 20px;
 		.title {
-			font-size: clamp(3rem, 2vw, 8rem);
-			text-transform: capitalize;
+			font-size: clamp(2rem, 2vw, 6rem);
+			margin-bottom: 20px;
 		}
-		.return-link mark {
-			color: #fff;
-			background-size: 0 100%;
-			transition: 0.5s ease;
-			display: inline;
-			background-repeat: no-repeat;
-		}
-		.return-link:hover mark {
-			background-size: 100% 100%;
-			color: #000;
+		.publish-date,
+		.author {
+			color: #9a9a9a;
 		}
 	}
+}
+.breadcrumb {
+	padding: 40px 0;
+}
+.return-link mark {
+	color: #b5b5b5;
+	background-size: 0 100%;
+	transition: 0.5s ease;
+	display: inline;
+	background-repeat: no-repeat;
+	padding: 2px;
+}
+.return-link:hover mark {
+	background-size: 100% 100%;
+	color: #fff;
 }
 mark {
 	background-color: transparent;
 	background-image: linear-gradient(
 		transparent 14%,
-		#fff 15%,
-		#fff 80%,
+		#000 15%,
+		#000 80%,
 		transparent 70%
 	);
-	color: #000;
+	color: #fff;
 }
 // Responsive
 @media screen and (max-width: 768px) {
@@ -65,6 +77,32 @@ mark {
 			width: 90%;
 			margin: auto;
 			margin-bottom: 80px;
+			.title {
+				font-size: clamp(2rem, 2vw, 6rem);
+			}
+		}
+	}
+}
+@media (min-width: 1024px) {
+	.rectangle {
+		display: block;
+	}
+}
+// Below 600px
+@media screen and (max-width: 600px) {
+	.header-container {
+		flex-direction: column;
+		.header-image {
+			width: 100%;
+			padding-bottom: 60%;
+		}
+		.header-content {
+			width: 100%;
+			padding: 0;
+			.title {
+				font-size: clamp(2rem, 2vw, 6rem);
+				margin-bottom: 20px;
+			}
 		}
 	}
 }

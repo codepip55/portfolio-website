@@ -38,21 +38,27 @@
 	}
 	.title {
 		margin-bottom: 2rem;
-		border-top: 1px solid white;
+		border-top: 1px solid black;
 		line-height: 1.1;
 		margin-top: 0.6rem;
 		padding-top: 0.4em;
 		white-space: normal;
 		h1 {
-			font-size: 6rem;
+			font-size: 5rem;
 		}
 	}
 	.description {
 		width: 80%;
+		color: #555555;
 	}
 }
-.image-cell {
+.image-right {
+	margin-right: 6.25%;
+}
+.image-left {
 	margin-left: 6.25%;
+}
+.image-cell {
 	order: 0;
 	height: auto;
 	.image-container {
@@ -79,7 +85,7 @@
 					background-size: cover;
 				}
 				.frame {
-					color: white;
+					color: black;
 					height: 100%;
 					left: 0;
 					pointer-events: none;
@@ -129,16 +135,15 @@
 .button {
 	position: relative;
 	display: block;
-	color: white;
+	color: black;
 	background-image: linear-gradient(
 		transparent 0,
-		white 0,
-		white 100%,
+		black 0,
+		black 100%,
 		transparent 100%
 	);
 	background-size: 0 100%;
 	background-repeat: no-repeat;
-	display: block;
 	transition: 0.5s ease;
 	text-transform: lowercase;
 	white-space: nowrap;
@@ -146,20 +151,10 @@
 	padding: 1rem 2rem;
 	margin: 2rem 0;
 	cursor: pointer;
-	border: 1px solid white;
+	border: 1px solid black;
 	&:hover {
 		background-size: 100% 100%;
-		color: black;
-	}
-}
-// Responsive
-@media (max-width: 1420px) {
-	.text-cell {
-		.title {
-			h1 {
-				font-size: 4rem;
-			}
-		}
+		color: white;
 	}
 }
 @media (max-width: 1000px) {
@@ -179,5 +174,35 @@
 	}
 	:host {
 		margin-bottom: 80px;
+	}
+	.margin-left {
+		margin-left: 0;
+	}
+	.margin-right {
+		margin-right: 0;
+	}
+}
+// Responsive
+@media (max-width: 1420px) {
+	.text-cell {
+		.title {
+			h1 {
+				font-size: 4rem;
+			}
+		}
+	}
+}
+// Below 600px
+@media (max-width: 600px) {
+	.page-container {
+		margin-top: 10px;
+	}
+	.grid-cell {
+		max-width: 100%;
+	}
+	.text-cell {
+		.description {
+			width: 100%;
+		}
 	}
 }
