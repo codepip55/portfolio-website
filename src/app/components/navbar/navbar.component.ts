@@ -13,10 +13,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
 	constructor(private router: Router) {}
 
 	ngOnInit() {
-		if (typeof document !== 'undefined') {
-			document.addEventListener('DOMContentLoaded', () => {
-				const hamburger = document.querySelector('.hamburger');
-				const nav = document.querySelector('nav');
+		if (typeof window !== 'undefined') {
+			window.addEventListener('DOMContentLoaded', () => {
+				const hamburger = window.document.querySelector('.hamburger');
+				const nav = window.document.querySelector('nav');
 
 				// @ts-ignore
 				hamburger.addEventListener('click', () => {
@@ -27,8 +27,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
 		}
 	}
 	ngOnDestroy() {
-		if (typeof document !== 'undefined') {
-			document.removeEventListener('DOMContentLoaded', () => {});
+		if (typeof window !== 'undefined') {
+			window.removeEventListener('DOMContentLoaded', () => {});
 		}
 	}
 
