@@ -24,10 +24,14 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 	public innerWidth: any;
 
 	ngOnInit(): void {
-		this.innerWidth = window.innerWidth;
-		window.addEventListener('resize', () => {
+		if (typeof window !== 'undefined') {
 			this.innerWidth = window.innerWidth;
-		});
+
+			window.addEventListener('resize', () => {
+				this.innerWidth = window.innerWidth;
+			});
+		}
+
 		this.loading = true;
 
 		this.getProjects();
@@ -41,9 +45,11 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 		);
 	}
 	ngOnDestroy() {
-		window.removeEventListener('resize', () => {
-			this.innerWidth = window.innerWidth;
-		});
+		if (typeof window !== 'undefined') {
+			window.removeEventListener('resize', () => {
+				this.innerWidth = window.innerWidth;
+			});
+		}
 	}
 
 	private async getProjects() {

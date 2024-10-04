@@ -64,7 +64,7 @@ export class StrapiService {
 			.get(`${this.cmsUrl}/tools`)
 			.pipe(
 				catchError((err) =>
-					this.handleError(err, { downloads: null }, 'get downloads'),
+					this.handleError(err, { downloads: null }, 'get tools'),
 				),
 			);
 	}

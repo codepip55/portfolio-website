@@ -45,7 +45,7 @@ export class ProjectInfoComponent implements OnInit {
 			authorId: project.author,
 			author: null,
 		};
-		let image$ = await this.getImage(projectPost.featuredImageId);
+		let image$ = this.getImage(projectPost.featuredImageId);
 		let image: any = await firstValueFrom(image$);
 		projectPost.image = image.source_url;
 
