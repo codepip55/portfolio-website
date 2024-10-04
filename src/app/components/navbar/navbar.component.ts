@@ -14,21 +14,21 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		if (typeof window !== 'undefined') {
-			window.addEventListener('DOMContentLoaded', () => {
-				const hamburger = window.document.querySelector('.hamburger');
-				const nav = window.document.querySelector('nav');
+			const hamburger = window.document.querySelector('.hamburger');
+			const nav = window.document.querySelector('nav');
 
+			// @ts-ignore
+			hamburger.addEventListener('click', () => {
 				// @ts-ignore
-				hamburger.addEventListener('click', () => {
-					// @ts-ignore
-					nav.classList.toggle('active');
-				});
+				nav.classList.toggle('active');
 			});
 		}
 	}
 	ngOnDestroy() {
 		if (typeof window !== 'undefined') {
-			window.removeEventListener('DOMContentLoaded', () => {});
+			const hamburger = window.document.querySelector('.hamburger');
+			// @ts-ignore
+			hamburger.removeEventListener('click', () => {});
 		}
 	}
 
