@@ -13,7 +13,7 @@ export class StrapiService {
 		private eventsService: EventsService,
 	) {}
 
-	private cmsUrl: string = 'http://localhost/wp-json/wp/v2';
+	private cmsUrl: string = 'https://wp.pepijncolenbrander.com/wp-json/wp/v2';
 
 	private handleError<T>(err: any, res: T, action: string): Observable<T> {
 		console.error(err);
